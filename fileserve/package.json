@@ -1,0 +1,15 @@
+{
+  "name": "fileserve",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "^1.1.0",
+    "@types/uuid": "^9.0.8"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "uuid": "^9.0.1"
+  }
+}

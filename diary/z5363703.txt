@@ -1,0 +1,75 @@
+Week1:
+Group formed and named Brainwave Builders
+I am selected as Scrum Master.
+Sohee selected as Product Owner.
+I created the Jira Site.
+We decided on the Learning Management System topic.
+Decided to use typescript for both backend and frontend.
+We discussed about the use of trpc and t3.
+Some milestones have been set (MVP by Wk5, finish most of the project by end of flex week 7).
+
+Week2:
+All group meetings were set up.
+I made a calendar to book everyone's meeting time.
+Sprint 1 goals and objectives were made.
+I configured Jira to include everything we had planned for.
+Technical Stack was decided as a group.
+
+Week3:
+The Scrum master update went smoothly.
+We worked through and finalised the flowchart.
+I have updated the entire Jira site assigning all backlogs to the appropriate epic and completed the timeline.
+Worked on parts of the proposal.
+Submitted the proposal.
+
+Week4:
+Successfully closed off sprint 1 and started sprint 2
+Allocated all user stories and tasks for the team
+Tracked the progress of all team members
+Hosted frontend meeting
+Clarified with the mentor on diary entries
+
+Week5:
+Finished Demo A and retro A on time and quite successfully.
+Allocated all user stories and tasks for the team for sprint 2
+Tracked the progress of all team members
+Hosted weekly meeting
+Started on the assessment system backend
+
+Week6:
+Finished backend of user profile
+Worked on the backend of assessment system, but waiting on the dependencies from teammates
+Tracked the progress of all team members
+Hosted weekly meeting
+
+Week7:
+Fixed some data structures in the profile-related database.
+Improved the profileinfo api by defining the behaviour when email is not specified.
+Designed assisgment deadline related data structures, waiting for sohee to finish the assisment creation part of the API.
+Tracked the progress of all team members
+Hosted weekly meeting
+Allocated all user stories and tasks for the team
+
+Week 8:
+restructured parts of the API made in wk7 because we added a middle layer to authenticate
+Led Demo B rehearsal
+Recorded and resized demo B video
+Made Retro B report
+Tracked the progress of all team members
+Hosted weekly meeting
+Allocated all user stories and tasks for the team
+
+Week 9:
+designed password reset email
+implemented password change at the profile page level
+added user dropout menu
+added log-out functionality
+implemented calendar backend and connected it with frontend
+worked on the overview section and functionalities section of project report
+Tracked the progress of all team members
+Hosted weekly meeting
+
+Week 10:
+Populated courses and accounts for the use of demo.
+Led demo rehearsal meetings.
+Completed the majority of the project report.

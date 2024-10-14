@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Form</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+            rel="stylesheet"
+        />
+    </head>
+    <body class="bg-gray-100 flex items-center justify-center h-screen">
+        <form
+            action="/upload"
+            method="post"
+            enctype="multipart/form-data"
+            class="bg-white p-8 rounded-lg shadow-lg"
+        >
+            <div class="mb-4">
+                <label
+                    for="fileName"
+                    class="block text-gray-700 text-sm font-bold mb-2"
+                    >File Name</label
+                >
+                <input
+                    type="text"
+                    name="fileName"
+                    id="fileName"
+                    placeholder="Filename will appear here"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    readonly
+                />
+            </div>
+            <div class="mb-4">
+                <label
+                    for="file"
+                    class="block text-gray-700 text-sm font-bold mb-2"
+                    >Upload File</label
+                >
+                <input
+                    type="file"
+                    name="file"
+                    id="file"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    onchange="updateFileName()"
+                />
+            </div>
+            <input
+                type="submit"
+                value="Submit"
+                class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer"
+            />
+        </form>
+        <script>
+            function updateFileName() {
+                var fileInput = document.getElementById("file");
+                var fileNameField = document.getElementById("fileName");
+                if (fileInput.files.length > 0) {
+                    var fileName = fileInput.files[0].name;
+                    fileNameField.value = fileName;
+                }
+            }
+        </script>
+    </body>
+</html>

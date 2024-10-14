@@ -1,0 +1,6 @@
+{
+  "yaml.schemas": {
+    "rpc/schema.json": "rpc/*.yml"
+  }
+  // "python.analysis.typeCheckingMode": "strict",
+}

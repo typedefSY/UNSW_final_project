@@ -1,0 +1,140 @@
+==
+# Week 1
+
+- Setup the environment in-person for Cicy
+- Decide on the roles and tech stack
+- Decide on the weekly meeting schedule
+- Github repository setup including branch protections and squash & merge strategy
+- Planned and prepared existing infrastructure [*1] for this project.
+    - Will be using proton as prod database & neutron as staging database.
+    - Will be deploying the service on neutron, adding configuration
+- Setup pre-commit hooks
+- Setup CI that checks the naming of CI
+- Setup Python VSCode typechecking preferences
+- WIP: Setup branch deployment and blue-green deployment
+    - Nginx configuration generation
+
+For context:
+I host a few websites and have some existing infrastructure setup, including:
+- prod (primary): proton.universe.yyjlincoln.com
+    - prod mySQL database
+- staging (secondary): neutron.universe.yyjlincoln.com
+    - staging mySQL database
+- local dev: higgs.universe.yyjlincoln.com
+
+==
+# Week 2
+
+Week 2 focused primarily on project setup. We organised team meetings, which
+consists of WTMs (Whole Team Meetings) and Department Meetings and delegated
+duties.
+
+- Set up frontend and backend projects in a monorepo structure.
+- Set up Prisma database workflow
+- Discussed and started implementation with Brian about the custom RPC approach
+- Set up Docker compose to containerise our app
+- Deployment will be deferred, as the backup plan is to deploy on managed
+infrastructure like Google Cloud or AWS
+- Discussed the suitability of T3-app for the project
+- Decided against tRPC due to its limitations
+- Decided against React full-stack as it's not sufficient for a large-scale
+project like this; A more traditional separate-server approach is more suitable
+over serverless/function-driven approaches.
+
+==
+# Week 3
+
+This week focused primarily on the proposal as it's due on Sunday Week 3.
+
+- Work on designs and mainly the proposal
+- Migrate and setup the repository to Github Classroom
+- Discussed docker compose arch setup
+- Helped Ethan set up his local docker on a Windows-based environment utilising WSL2
+- Added nginx as a reverse proxy
+- Discuss Type Generation with Brain
+- Ran through a Jira setup session with everyone
+
+==
+# Week 4
+
+This week focused primarily on the interface designs & rpc.
+
+- Taking Brian's advice, reimplementeed the rpc
+- Tested that it works
+- Assisted other team members with their parts, including Steve
+- Added docker setup for python env (for rpc code generation)
+
+==
+# Week 5
+
+This week focused on the login page and sign up page, in preparation for Demo 1.
+
+It also includes helping team members upskill - introducing the concepts of
+reducers (for state management), controlled/uncontrolled forms.
+
+Functionality wise:
+
+- Implement the login page.
+
+Project progressing well as expected. Minor slowdown in implementing the RPC
+itself, but the long-term benefits will sure compensate for this.
+
+==
+# Week 6
+
+Continue with the development of login page, and reviewing team members code.
+
+Planning, drafting and prototyping a search feature that allows one to search
+up forum posts. This is a technical investigation.
+
+Feature-wise, the progress got slowed down by other assignments quite a bit. I'm
+falling behind on the sprint work but I am not overly concerned. Expect more
+progress soon.
+
+==
+# Week 7
+
+Significant refactor of the frontend and added lots of forms.
+
+Significant UI redesign for the frontend, significantly reduced code repetition
+and improved code quality.
+
+STANDUP:
+
+Progress since last week:
+Major refactoring to the dashboard pages, significantly reduced code redundancy
+and designed the login in API. Redesigned the dashboard with @Steve Yang,
+writing stub API code.
+
+Announcements will be done before the demo; Forums will be done following that.
+
+Blockers: not being blocked, but blocking @Steve Yang. I’ll merge in the
+refactor shortly so Steve can work on redoing the dashboard elements.
+
+Features that you worked on that could be presented in the demo:
+
+Announcements.
+
+Features that you are working on but cannot be presented yet:
+
+Nothing else
+
+==
+# Week 8
+
+Cleaned up some things after the demo.
+Prepare for another (mental) sprint to get all features done for the final demo.
+More planning works.
+
+==
+# Week 9
+
+Finished forum, major clean up on pages.
+Guiding through everyone to finish the code in the final stretch.
+
+==
+# Week 10
+
+Final stretch, adding course books (materials) and deployment (local, prod)
+Clean up of everything.
+Prepare for the group report and presentation.

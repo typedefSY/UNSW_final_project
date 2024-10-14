@@ -1,0 +1,85 @@
+# Development Docker-compose file
+
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "3900:80"
+    volumes:
+      - .dev/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - client
+      - backend
+
+  client:
+    image: node:20
+    ports:
+      - 3901:3000
+    volumes:
+      - .:/app
+    working_dir: /app/client
+    environment:
+      NEXT_PROXY_BACKEND_URL: backend:3000
+    entrypoint: ["bash", "-c", "yarn && yarn dev"]
+
+  backend:
+    image: node:20
+    ports:
+      - 3902:3000
+    environment:
+      DATABASE_URL: "mysql://root@db/brainwaves"
+      FRONTEND_ADDRESS: "http://localhost:3900"
+      SK_MAILGUN_API_KEY: "api:a9582656f7f026de6773bad23b4d568b-b02bcf9f-1b784054"
+
+    volumes:
+      - .:/app
+    working_dir: /app/server
+    entrypoint:
+      [
+        "../.dev/wait-for-it.sh",
+        "db:3306",
+        "--",
+        "bash",
+        "-c",
+        "yarn && yarn dev",
+      ]
+
+  db:
+    ports:
+      - 3903:3306
+    image: "mysql:8.0"
+    volumes:
+      - db:/var/lib/mysql
+      - .dev/db/init.d:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+      MYSQL_DATABASE: brainwaves
+
+  shell:
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: tail -f /dev/null
+    build:
+      dockerfile: .dev/shell.Dockerfile
+      context: .
+
+  endpoint-gen:
+    image: python:3.12
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: /bin/sh -c "pip install -r /app/rpc/requirements.txt && tail -f /dev/null"
+
+  phpmyadmin:
+    image: phpmyadmin
+    ports:
+      - 3939:80
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: ""
+      PMA_USER: root
+      PMA_PASSWORD: ""
+
+volumes:
+  db: {}

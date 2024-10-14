@@ -1,0 +1,5 @@
+.DS_Store
+venv
+target
+node_modules
+.dev/

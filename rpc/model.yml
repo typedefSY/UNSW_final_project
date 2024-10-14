@@ -1,0 +1,586 @@
+types:
+  User:
+    id: string
+    email: string
+    firstName: string
+    lastName: string
+    avatar?: string
+    gender?: string
+    title?: string
+    bio?: string
+
+  Token: string
+
+  Featured:
+    background: string
+    title: string
+    description: string
+
+  Assessment:
+    id: string
+    title: string
+    description?: string
+    courseId: string
+    startDate?: string
+    dueDate?: string
+    type: string
+    questions: Question[]
+    submissions: Submission[]
+    totalPoints?: int
+
+  Question:
+    id: string
+    assessmentId: string
+    title: string
+    type: string
+    options?: json
+    answer?: string
+    points: int
+
+  NewQuestion:
+    title: string
+    type: string
+    options?: json
+    answer?: string
+    points: int
+
+  Submission:
+    id: string
+    assessmentId: string
+    studentId: string
+    submittedAt?: string
+    assignmentContent?: json
+    answers?: json
+    feedback?: string
+    grade?: int
+    isMarked: boolean
+
+  Course:
+    id: string
+    name: string
+    code?: string # NOTE: This is not unique. Do not key to this.
+    description?: string
+    imageURL?: string
+    createdBy: User
+    createdAt: int
+
+  UserStats:
+    coursesInProgress: int
+    coursesCompleted: int
+    tasksFinished: int
+
+  UserSevenDayActivity:
+    activities: int[]
+
+  CourseMembership:
+    userId: string
+    courseId: string
+    role: string
+    createdAt: int
+
+  Forum:
+    id: string
+    courseID: string
+    name: string
+    createdAt: int
+    createdBy?: User
+
+  Thread:
+    id: string
+    forumID: string
+
+    createdAt: int
+    updatedAt: int
+    createdBy?: User
+    deletedAt?: int
+
+    title: string
+
+    posts: Post[]
+
+    isAnnouncement: boolean
+
+  ThreadStats:
+    threadID: string
+    views: int
+
+  PostStats:
+    postID: string
+    likes: int
+    liked: boolean
+
+  Post:
+    id: string
+    threadID: string
+
+    createdAt: int
+    updatedAt: int
+    createdBy?: User
+    deletedAt?: int
+
+    content: json
+
+  Event:
+    name: string
+    time: string
+    type: string
+    url: string
+
+  ScheduleClass:
+    courseID: string
+    startDate: string
+    classType: string
+    classLink: string
+
+  DriveItem:
+    id: string
+    url: string
+    name: string
+
+  DriveFolderInfo:
+    id: string
+    name: string
+
+  DriveFolder:
+    parentFolderId?: string
+    id: string
+    name: string
+    items: Array<DriveItem | DriveFolderInfo>
+
+  CourseBook:
+    id: string
+    title: string
+    parentID?: string
+    childrenIDs?: string[]
+    content?: json
+    course?: Course
+    parent?: CourseBook
+    children?: CourseBook[]
+
+endpoints:
+  ping:
+    request:
+      seq: int
+    response:
+      seq: int
+    service: typescript
+
+  checkEmail:
+    request:
+      email: string
+    response:
+      taken: boolean
+    service: typescript
+
+  register:
+    request:
+      email: string
+      password: string
+      firstName: string
+      lastName: string
+      otp: string
+    response:
+    service: typescript
+
+  verifyEmail:
+    request:
+      email: string
+    response:
+    service: typescript
+
+  login:
+    request:
+      email: string
+      password: string
+    response:
+      user: User
+      token: Token
+    service: typescript
+
+  verifyForgotPassword:
+    request:
+      email: string
+    response:
+    service: typescript
+
+  forgotPassword:
+    request:
+      email: string
+      newPassword: string
+      otp: string
+    response:
+    service: typescript
+
+  getFeatured:
+    request:
+    response:
+      featured: Featured
+    service: typescript
+
+  getUserInfo:
+    request:
+      email?: string
+    response:
+      user: User
+    service: typescript
+
+  getUserInfoByID:
+    request:
+      id: string
+    response:
+      user: User
+    service: typescript
+
+  getUserInfoByIDs:
+    request:
+      ids: string[]
+    response:
+      users: Record<string, User>
+    service: typescript
+
+  setUserProfile:
+    request:
+      user: User
+    response:
+    service: typescript
+
+  resetPassword:
+    request:
+      password: string
+      newPassword: string
+    response:
+    service: typescript
+
+  createAssessment:
+    request:
+      title: string
+      description?: string
+      courseId: string
+      startDate?: string
+      dueDate?: string
+      type: string
+      questions?: NewQuestion[]
+    response:
+      assessment: Assessment
+    service: typescript
+
+  submitAnswers:
+    request:
+      assessmentId: string
+      answers: json
+    response:
+      submission: Submission
+    service: typescript
+
+  submitAssignment:
+    request:
+      assessmentId: string
+      assignmentContent: json
+    response:
+      submission: Submission
+    service: typescript
+
+  manualGradeSubmission:
+    request:
+      submissionId: string
+      saqGrades: int
+    response:
+      submission: Submission
+    service: typescript
+
+  assignmentGradeSubmission:
+    request:
+      submissionId: string
+      grades: int
+      feedback: string
+    response:
+      submission: Submission
+    service: typescript
+
+  fetchAssessmentDetailsTeacher:
+    request:
+      assessmentId: string
+    response:
+      assessment: Assessment
+    service: typescript
+
+  fetchAssessmentDetailsStudent:
+    request:
+      assessmentId: string
+    response:
+      assessment: Assessment
+    service: typescript
+
+  fetchAssessmentSubmissions:
+    request:
+      assessmentId: string
+    response:
+      submissions: Submission[]
+    service: typescript
+
+  fetchSubmission:
+    request:
+      submissionId: string
+    response:
+      submission: Submission
+    service: typescript
+
+  fetchAssessments:
+    request:
+      courseId: string
+    response:
+      assessments: Assessment[]
+    service: typescript
+
+  fetchStudentSubmission:
+    request:
+    response:
+      submissions: Submission[]
+    service: typescript
+
+  fetchUserStats:
+    request:
+    response:
+      stats: UserStats
+    service: typescript
+
+  fetchUserSevenDayActivity:
+    request:
+    response:
+      activity: UserSevenDayActivity
+    service: typescript
+
+  createCourse:
+    request:
+      name: string
+      description: string
+      code?: string
+      imageURL?: string
+    response:
+      course: Course
+    service: typescript
+
+  updateCourse:
+    request:
+      id: string
+      name: string
+      description: string
+      code?: string
+      imageURL?: string
+    response:
+      course: Course
+    service: typescript
+
+  getCourses:
+    request:
+      courseIds: string[]
+    response:
+      courses: Course[]
+    service: typescript
+
+  getUserCourses:
+    request:
+    response:
+      courses: Course[]
+      memberships: CourseMembership[]
+    service: typescript
+
+  createCourseInvitation:
+    request:
+      courseId: string
+      role: string
+    response:
+      code: string
+    service: typescript
+
+  joinCourse:
+    request:
+      code: string
+    response:
+      course: Course
+    service: typescript
+
+  leaveCourse:
+    request:
+      courseId: string
+    response:
+    service: typescript
+
+  removeMemberFromCourse:
+    request:
+      userID: string
+      courseID: string
+    response:
+    service: typescript
+
+  getForumByCourseID:
+    request:
+      courseID: string
+    response:
+      forum: Forum
+    service: typescript
+
+  getForumByID:
+    request:
+      id: string
+    response:
+      forum: Forum
+    service: typescript
+
+  getThreads:
+    request:
+      forumID: string
+    response:
+      threads: Thread[]
+    service: typescript
+
+  upsertThread:
+    request:
+      thread: Thread
+    response:
+      thread: Thread
+    service: typescript
+
+  deleteThread:
+    request:
+      threadID: string
+    response:
+    service: typescript
+
+  upsertPost:
+    request:
+      post: Post
+    response:
+      post: Post
+    service: typescript
+
+  deletePost:
+    request:
+      postID: string
+    response:
+    service: typescript
+
+  getRoleInCourse:
+    request:
+      courseId: string
+    response:
+      role: string | null
+    service: typescript
+
+  getThreadAndPostStats:
+    request:
+      threadID: string
+    response:
+      thread: ThreadStats
+      posts: Record<string, PostStats>
+    service: typescript
+
+  toggleLikePost:
+    request:
+      postID: string
+    response:
+    service: typescript
+
+  incrementThreadView:
+    request:
+      threadID: string
+    response:
+    service: typescript
+
+  getUserEvents:
+    request:
+    response:
+      events: Record<string, Event[]>
+    service: typescript
+
+  getCourseEvents:
+    request:
+      courseId: string
+    response:
+      events: Record<string, Event[]>
+    service: typescript
+
+  getAnnouncements:
+    request:
+      courseIDs?: string[]
+    response:
+      threads: Thread[]
+      threadToCourse: Record<string, Course>
+    service: typescript
+
+  getCourseMembers:
+    request:
+      courseID: string
+    response:
+      users: User[]
+      memberships: CourseMembership[]
+    service: typescript
+
+  addScheduleClass:
+    request:
+      scheduleClass: ScheduleClass
+    response:
+    service: typescript
+
+  createDriveFolder:
+    request:
+      newFolderName: string
+      parentFolderID: string
+    response:
+      folderInfo: DriveFolderInfo
+    service: typescript
+
+  getDriveFolder:
+    request:
+      folderID: string
+    response:
+      folder: DriveFolder
+    service: typescript
+
+  addDriveItem:
+    request:
+      url: string
+      name: string
+      folderID: string
+    response:
+      item: DriveItem
+    service: typescript
+
+  getCourseBook:
+    request:
+      bookIDs: string[]
+    response:
+      books: CourseBook[]
+    service: typescript
+
+  getBooksByCourse:
+    request:
+      courseID: string
+    response:
+      books: CourseBook[]
+    service: typescript
+
+  createBook:
+    request:
+      title: string
+      courseID: string
+      parentID?: string
+      content?: json
+    response:
+      book: CourseBook
+    service: typescript
+
+  updateBook:
+    request:
+      id: string
+      title: string
+      content?: json
+    response:
+      book: CourseBook
+    service: typescript
+
+  deleteBook:
+    request:
+      id: string
+    response:
+    service: typescript

@@ -1,0 +1,118 @@
+Week1:
+
+Group Formation and Naming:
+    We settled on the name "Brainwave Builders" for our group, which was confirmed during our online chat sessions.
+Role Assignments:
+    Each member's role was determined, with myself contributing to both backend and frontend development.
+    Specific roles such as Scrum Master and Product Owner were assigned to Cicy and Sohee, respectively.
+Meeting Schedule:
+    We agreed upon our weekly meeting schedule to ensure regular progress checks and coordination.
+Technology Stack Discussion:
+    During our group meeting, we delved into discussions regarding the use of strongly typed languages like TypeScript and Go, compared to dynamically typed languages like Python, for our project.
+    We evaluated their respective maintenance complexities and selected our tech stack accordingly.
+Tech Stack Selection:
+    We confirmed the use of a full-stack TypeScript setup, incorporating technologies such as Next.js, Prisma, React, MySQL, and tRPC for our project.
+    This decision aligns with the group's consensus to utilize TypeScript for both backend and frontend development.
+Project Setup:
+    Utilizing the T3-App, I deployed our entire project's full-stack environment.
+    This setup includes TypeScript, Next.js, Prisma, Tailwind CSS, tRPC, and NextAuth.js, following the group's decision to use these technologies.
+Infrastructure Preparation:
+    I deployed 6 local VM servers and modified BGP routing announcements to assign both IPv4 and IPv6 public addresses and network routes.
+    Docker environments were installed on these servers to support our group's future needs.
+Configuration:
+    Configurations were made for strict TypeScript checking and other setup items, ensuring a robust development environment.
+
+Week 2:
+
+Participation in Team Meetings:
+    I actively participated in both frontend and backend team meetings to ensure alignment and progress on our project deliverables.
+
+Discussion on tRPC's Applicability:
+    Engaged in a thorough discussion with Lincoln regarding the applicability of tRPC in our project, weighing its benefits and implementation strategies.
+
+Research on Custom RPC and Code Generation Tools:
+    Collaborated with Lincoln to research custom RPC solutions and the development of tools for automating code generation, aiming to optimize our development process.
+
+Socket.IO Demonstration:
+    Developed a demo for Socket.IO on both frontend and backend, providing a practical example to help our team members understand its implementation and utility in real-time communication.
+
+Deployment of a Local Virtualized Development Environment:
+    I deployed my local virtualized development environment to support a seamless and efficient workflow for our project development tasks, ensuring a robust platform for testing and integration of our tech stack.
+
+Week 3:
+
+Commit Record Adjustments:
+    Investigated methods to amend commit records in our old private repository that incorrectly referenced pull requests.
+
+Participation in Meetings:
+    Continued active participation in both full group meetings and specific frontend/backend discussions.
+
+Development of a Code Generator:
+    Developed a code generator capable of converting YAML configuration files into TypeScript type declarations.
+    This tool is a preparatory step for our custom RPC implementation, aiming to streamline the development process by automating the generation of boilerplate code.
+
+Proposal Technical Architecture Section:
+    Completed the technical architecture section of our project proposal.
+
+Docker Compose Modifications:
+    Updated our Docker Compose configurations to support both ARM and x86 architectures.
+
+Week 4:
+
+RPC:
+    Researching the design of rpc with Lincoln.
+Frontend Dev:
+    Impl Log in & Sign up & Reset
+Backend Dev:
+    Impl Log in & Sign up & Reset
+    Email API deploy, DNS settings
+
+Week 5:
+
+Continued working on the complete login functionality (both frontend and backend):
+    - Implemented email sending, registration process, verification code, etc., APIs on the backend, and connected them to the database.
+    - Implemented login/register/verification events on the frontend that connect with the backend.
+
+Switched the email API to production deployment.
+Rebased a commit containing an error in the main branch of GitHub.
+Participation in Meetings.
+
+Week 6:
+
+Refactored the frontend profile settings code.
+Added a phpmyadmin image to docker compose for debugging the database during development.
+Start writing the front-end business logic part of the profile setting.
+
+Week 7:
+
+Finished front-end business logic part of the profile setting.
+Updated RPC, based on Rust:
+    Added handling for complex types.
+    Release the tstype-py in PYPI.
+Participation in Meetings.
+
+Week 8:
+
+Implemented frontend calendar and deadline system.
+Designed frontend structure related to the calendar.
+Fixed existing code based on new authentication middleware.
+Participation in Meetings.
+
+
+Week 9:
+Implemented an advanced editor component similar to Notion:
+    - Supports dragging text blocks
+    - Features such as bold, italic, underline, strikethrough, headings, lists, quotes, code blocks, images, links,
+    tables and separators
+    - Undo and redo functionality
+    - Color support
+    - Image uploading capability
+    - Enhanced with ChatGPT AI for refinement and generation.
+Implemented a file drive, both the front-end and back-end.
+Participation in Meetings.
+
+Week 10:
+Continued working on the file drive
+Fixed multiple bugs for previous features
+Final Presentation
+Work on technical part of the final report

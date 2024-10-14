@@ -1,0 +1,113 @@
+Steve Yang COMP3900 Diary
+
+======================================================================
+
+Week1:
+Group formed and named Brainwave Builders, I attend the weekly meeting
+During this meeting,
+1. We decided on the Learning Management System topic.
+2. We decided to use Typescript for both backend and frontend.
+3. Use REACT and tailwind as the frontend tech stack.
+4. I will do both backend and frontend
+5. We discussed about the use T3 App to set up our project.
+6. Some milestones have been set (MVP by end of WK4, finish most of the project by end of flex week 7).
+
+======================================================================
+
+week2:
+1. Attend group weekly meeting - decide to have small group meeting later, where I will attend frontend
+and backend group meeting next week.
+- Frontend - Monday 10-11pm (weekly)
+- Backend  - Monday 11-12pm (weekly)
+2. Discussed the classroom feature, and I suggest to do only live chats feature as MVP. Will do live streaming
+if we do have time to.
+3. Worked on project proposal, I and Ethan take the part of user stories and sprints.
+4. Discussed the priorities of each part on team scale.
+5. Discussed about using tRPC and sockitIO. Decide to use SocketIO and using scripts to turn API from yaml to code.
+6. Write a draft of TODO List for both frontend and backend.
+
+======================================================================
+
+week3:
+- This week, I Worked mainly on proposal and publish Jira functionalities
+1. I finish the Features & User Stories part in proposal.
+2. I attend frontend meeting and discuss about the tech stack we used for our Frontend. We decided to use Radix as the Design system tool.
+3. I publish a timeline for our proposal on Jira.
+4. I grouped the tasks of the entire project into pages and published small functionalities on Jira.
+5. I attend the group meeting, discussed about the sprints of our project.
+
+======================================================================
+
+week4:
+- This week, I worked mainly on frontend of main dashboard. I finished frontend features below:
+1. The course card component
+2. A course board (container) component for all kinds of course board
+3. The create course popup window
+4. The join course popup window
+5. Rewrite the top navigation bar for Ethan. Change it to tsx style and make it possible to getting values.
+6. Rewrite the side navigation bar for Ethan. Do the same thing as above
+7. Rewrite the activity and stats components for Ethan. Do the same thing as above
+8. Combine all components together to build a main dashboard page
+
+======================================================================
+
+week5:
+- This week, I worked mainly on redesign dashboard page as a responsive page
+1. To make our system work perfectly on phone side, I change the original design
+2. Learn RPC so that I can start working on connecting frontend and backend together
+3. will start working on building the responsive page next week and do more components
+
+======================================================================
+
+week6:
+- This week, I worked mainly on frontend of profile editing. I finished features below:
+1. The profile editing page with 3 options
+2. The profile info editing component
+3. The preference editing component
+4. The security editing component
+5. The password frontend check
+
+======================================================================
+
+week7
+- This week, I worked mainly on frontend refator and building creating-exam page.
+1. Refactor profile editing page
+2. Make all pages fit to full screen
+3. Build creating SAQ and MCQ component for creating-exam page
+4. Build creating-exam page, implementing editing and adding questions
+
+======================================================================
+
+week8
+- This week, I worked mainly on frontend refactor.
+1. Refactor navigation bar
+2. Refactor dashboard layout
+3. Refactor activiy and stats componets on dashboard. Use recharts to rebuild graph
+4. Add TODO list on dashboard
+
+======================================================================
+
+week9
+- This week, I worked mainly on frontend of assessment system, also did merging work with Sohee
+1. Assignment and exam listing for teacher side, allows teacher to create new assignmet and exam
+2. Submissions list, which alows teacher to see all submissions from students
+3. Marking assignment/exam page, marking assignment page allows teacher to mark student submission and write feedback;
+   marking exam page allows teacher to manually mark SAQ
+4. Assessment list for students side, allows student to see all assessments and the status of each assessment
+5. Attending assignment/exam pages, attending assignment page allows student to use advanced editor to write assignment;
+   attending exam page allows student to answer each question and auto submit answers
+6. View assignment result page, this page allows student to see the result of their assignment (after teacher marked)
+7. View exam results listing, this list allows student to see the result of each exam
+8. Help Sohee to merge backend and frontend working together
+
+======================================================================
+
+week10
+- This week, I worked mainly on debugging and UI imprvementy, also did drive card component and create folder popup for file drive system
+1. Improve courseCard UI, which allows long description for now
+2. Improve courses container UI, which arrange all courses neatly
+3. Imrpove all tables UI in assessment system, use Radix UI's Table component instead of using original table
+4. Drive card component
+5. Create folder popup window
+6. Fix the issue that teachr cannot see student's answer when marking SAQ questions
+7. Prepare for the final demo and write final report

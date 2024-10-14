@@ -1,0 +1,202 @@
+Ethan Reinhard COMP3900 Diary
+
+======================================================================
+Week 1
+- Decided on group name.
+- Decided on Learning Management System for project
+- Decided on typescript for frontend and backend
+- Decided on roles - I am working on Frontend/Backend/Testing
+- Missed first meeting Saturday 17/02/24 7pm.
+- Scheduled weekly meetings for Thursdays 9:30pm.
+- Assigned Milestones - Not completely clear on these, will ask in Week 2 meeting.
+
+======================================================================
+Week 2
+Lab
+- Discussed whether livestreaming/audio is required - decided not a priority due to difficulty
+- discussed required team meeting times, created lettucemeets to decide
+- Discussed goals to achieve before Thursday meeting
+	- User stories
+	- feature priority
+	- meeting times allocated
+
+- worked on user stories and feature priority
+
+Whole team meeting
+- Finalised meeting times (mine):
+	- Frontend - Monday 10-11pm (commencing wk3)
+	- Backend  - Monday 11-12pm (commencing wk4)
+	- Testing  - Monday 9:30-10pm (commencing wk4)
+- Dicussed and outlined priorities of features on a team scale
+- Decision on how we start using Jira as a tool
+- went through scope definition
+- Defined elements of MVP
+- Assigned tasks for Project Proposal - I was assigned User Requirements alongside Steve
+
+======================================================================
+Week 3
+Frontend
+- dicussed design for layout etc
+- discussed layout of code
+- set up environment (docker)
+	- this took a long time for me being on a windows machine
+	eventually got it working by avoiding CRLF line terminators and running on wsl
+
+Lab
+- weekly check in with Xin (i was 10 mins late)
+- ran through feature prioritisation
+- ran through some user story/requirements stuff
+- went through the Jira board and how we want to operate around work costs
+
+
+Whole team meeting
+- flow diagrams for frontend (Cicy and Sohee were life savers in this)
+- prepared for project proposal deadline
+
+======================================================================
+Week 4
+Testing - NA
+Frontend - NA
+Backend - NA
+
+Lab
+- weekly check in
+- dicussion around frontend
+	- shared decisions with team from meeting last week
+	- decided on actions before thursday
+		-
+	- Cicy assigned tasks
+- my tasks by Monday 11/03
+	- Mock navigation panel
+	- mock statistics section (main dashboard)
+	- mock activities section (main dashboard)
+
+
+Notes:
+Sunday 10/03
+	- worked on frontend development, dashboard aspects and navigation
+	- will have to continue works Monday 11/03
+
+=====================================================================
+Week 5
+Monday
+- completed navigation panels
+-
+
+Tuesday
+- completed actiity section mockup
+- completed statistics section mockup
+
+Wednesday
+- Progressive check A in lab time (did well)
+- cancelled rest of team catch up, give us all a break.
+
+Thursday
+- retroflective A report as a team (Cicy will restructure/format/fill up)
+- reviewed user stories in sprints 3 and 4
+- assigned tasks for sprint 3
+- discussed ways to improve workflow in our sprints
+	- better meeting structure/regularity
+	- start work earlier
+	- better point system for jira tasks
+
+Friday
+- null
+
+Weekend
+- worked on assigned tasks.
+
+=======================================================================
+Wk 6 - flex week
+
+Monday - Standup
+- discussed progress so far, allocation breakdown.
+- Set goals to work on assessment system frontend for rest of week.
+
+Tuesday
+
+Wednesday
+- Worked on Assessment list/search
+- Assessment Results/Search
+
+Thursday - Team Meeting
+- Got new assignment interface working
+- worked on new exam interface
+- meeting with whole team
+	- discussed the need to define our backend endpoints asap
+	- worked on figuring out needed interfaces
+	- Sohee and I outlined what is needed for assessment interfaces
+	- now need to get rest of assessment frontend done asap
+
+Friday
+- worked on assessment frontend (results/editing/creating)
+
+Weekend
+- Continued work on above assessment items on Sunday.
+- Aiming to have most/all complete early week 7.
+
+========================================================================
+Week 7
+
+Monday
+Worked popups for editing assessment results/feedback/getting file downloads
+- Team meeting regarding structure for retro B
+	- need assessment/course interface implemented
+
+Tuesday
+Put together some structure around how submission system will work.
+
+Wednesday
+Team standup for checking in with progress - I have a lot left to do
+
+Thursday
+Thesis took over, couldn't put work into this
+
+Friday
+Thesis still priority one
+
+Weekend
+Worked on Submission system, hoping to be complete frontend side of all assessment interfacing by Monday evening meeting.
+
+========================================================================
+Week 8
+
+Worked on Assessment interface, tidied up a few things
+
+Discussed backend implementation for assessment features
+
+Demo B on Wednesday arvo - couldn't navigate to my sections with the new routing/page layout, so weren't shown, but were completed
+
+Took a break to focus on Thesis
+
+========================================================================
+Week 9
+
+Check in with Xin on wednesday in tutorial
+
+Discussed allocation of work for rest of project
+
+I'm working on testing frontend with jest
+	had some issues setting up environment with our tech stack
+	got environment working for components - so can do basic render testing
+	will do a bunch of that to get coverage up
+
+having difficulties with rendering whole pages in jsdom (just not actually rendering)
+	once i figure this out, i can complete the tests and merge to main
+
+need to help with presentation prep and report writing
+
+My contribution lately has been low, I will reflect this in my peer review so that the others are not brought down by it.
+
+========================================================================
+Week 10
+
+Helped out where possible working up to project demo on wednesday.
+
+Ran into more roadblocks with testing, not running properly against our tech stack. current progress can be seen in branch BW-116-Testing-Attempt4 but is not in main.
+
+Project demo wednesday, went in person to campus and met up as a group to rehearse and present. Went really well everyone did great!
+
+Worked on implementation challenges section of report to see out the term.
+
+fin.

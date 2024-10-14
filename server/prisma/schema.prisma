@@ -1,0 +1,236 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mysql"
+    url      = env("DATABASE_URL")
+}
+
+model User {
+    id                       String              @id @default(uuid())
+    email                    String              @unique
+    firstName                String
+    lastName                 String
+    createdAt                DateTime            @default(now())
+    updatedAt                DateTime            @updatedAt
+    password                 String
+    tokens                   Token[]
+    avatar                   String?             @db.LongText
+    gender                   String?
+    title                    String?
+    bio                      String?
+    role                     String              @default("user")
+    coursesOwned             Course[]            @relation("coursesOwned")
+    submissions              Submission[]        @relation("studentSubmissions")
+    courseMembers            CourseMembers[]     @relation("CourseMemberUser")
+    courseInvitationsCreated CourseInvitations[] @relation("CourseInvites")
+    threadsCreated           Thread[]            @relation("userThreadsCreated")
+    postsCreated             Post[]              @relation("userPostsCreated")
+    forumsCreated            Forum[]             @relation("userForumsCreated")
+}
+
+model Token {
+    id        String   @id @default(uuid())
+    userID    String
+    user      User     @relation(fields: [userID], references: [id])
+    token     String   @unique
+    expiresAt DateTime
+}
+
+model EmailVerification {
+    id           String   @id @default(uuid())
+    email        String
+    verification String
+    createdAt    DateTime @default(now())
+    expiresAt    DateTime @updatedAt
+}
+
+model Course {
+    id                String              @id @default(uuid())
+    name              String
+    code              String?
+    description       String?             @db.LongText
+    imageURL          String?
+    createdAt         DateTime            @default(now())
+    createdByID       String
+    createdBy         User                @relation("coursesOwned", fields: [createdByID], references: [id])
+    assessments       Assessment[]        @relation("courseAssessments")
+    courseInvitations CourseInvitations[] @relation("CourseInvitations")
+    courseMembers     CourseMembers[]     @relation("CourseMemberCourse")
+    forums            Forum[]             @relation("courseForums")
+    schedule          ScheduleClass[]     @relation("ScheduleClass")
+    book              CourseBook[]
+}
+
+model ScheduleClass {
+    id        String   @id @default(uuid())
+    url       String
+    startDate DateTime
+    courseID  String
+    course    Course   @relation("ScheduleClass", fields: [courseID], references: [id])
+    type      String   @default("lecture") // assuming default is "lecture", and it can be either "lecture" or "tutorial"
+}
+
+model CourseInvitations {
+    courseID    String
+    role        String
+    secret      String   @unique
+    course      Course   @relation("CourseInvitations", fields: [courseID], references: [id])
+    createdAt   DateTime @default(now())
+    expiresAt   DateTime
+    createdByID String
+    createdBy   User     @relation("CourseInvites", fields: [createdByID], references: [id])
+}
+
+enum CourseRole {
+    STUDENT
+    TEACHER
+}
+
+model CourseMembers {
+    courseID  String
+    userID    String
+    user      User       @relation("CourseMemberUser", fields: [userID], references: [id])
+    role      CourseRole
+    createdAt DateTime   @default(now())
+    course    Course     @relation("CourseMemberCourse", fields: [courseID], references: [id])
+
+    @@id([courseID, userID])
+    @@index([courseID, userID])
+}
+
+model Assessment {
+    id          String       @id @default(uuid())
+    title       String
+    description String?
+    courseID    String
+    startDate   DateTime?
+    dueDate     DateTime?
+    type        String // "assignment" or "exam"
+    course      Course       @relation("courseAssessments", fields: [courseID], references: [id])
+    questions   Question[]   @relation("assessmentQuestions")
+    submissions Submission[] @relation("assessmentSubmissions")
+    createdAt   DateTime     @default(now())
+    updatedAt   DateTime     @updatedAt
+    totalPoints Int?         @default(100)
+}
+
+model Question {
+    id           String     @id @default(uuid())
+    assessmentID String
+    title        String
+    type         String // "MCQ" or "short_answer"
+    options      Json? // For MCQs: store options and correct answer
+    answer       String?
+    points       Int // Points/weighting for this question
+    assessment   Assessment @relation("assessmentQuestions", fields: [assessmentID], references: [id])
+}
+
+model Submission {
+    id                String     @id @default(uuid())
+    assessmentID      String
+    studentID         String
+    submittedAt       DateTime?
+    assignmentContent Json?
+    answers           Json? // For exam submissions: student's answers
+    grade             Int?
+    feedback          String?
+    assessment        Assessment @relation("assessmentSubmissions", fields: [assessmentID], references: [id])
+    student           User       @relation("studentSubmissions", fields: [studentID], references: [id])
+    isMarked          Boolean    @default(false)
+}
+
+model Forum {
+    id          String   @id @default(uuid())
+    courseID    String   @unique
+    name        String
+    course      Course   @relation("courseForums", fields: [courseID], references: [id])
+    threads     Thread[] @relation("formThread")
+    createdAt   DateTime @default(now())
+    createdByID String
+    createdBy   User     @relation("userForumsCreated", fields: [createdByID], references: [id])
+}
+
+model Thread {
+    id    String @id @default(uuid())
+    title String
+
+    forumID     String
+    forum       Forum  @relation("formThread", fields: [forumID], references: [id])
+    createdByID String
+    createdBy   User   @relation("userThreadsCreated", fields: [createdByID], references: [id])
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    posts     Post[]   @relation("postsThreads")
+
+    deletedAt DateTime?
+
+    isAnnouncement Boolean @default(false)
+}
+
+model Post {
+    id          String   @id @default(uuid())
+    threadID    String
+    thread      Thread   @relation("postsThreads", fields: [threadID], references: [id])
+    content     Json
+    createdByID String
+    createdBy   User     @relation("userPostsCreated", fields: [createdByID], references: [id])
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+
+    deletedAt DateTime?
+}
+
+model ThreadViews {
+    id       String   @id @default(uuid())
+    threadID String
+    userID   String
+    viewedAt DateTime @default(now())
+}
+
+model PostLikes {
+    postID String
+    userID String
+
+    @@id([postID, userID])
+    @@unique([postID, userID])
+    @@index([postID, userID])
+}
+
+model Folder {
+    id         String   @id @default(uuid())
+    name       String
+    parentID   String?
+    parent     Folder?  @relation("subFolders", fields: [parentID], references: [id])
+    subFolders Folder[] @relation("subFolders")
+    files      Files[]  @relation("folderFiles")
+}
+
+model Files {
+    id       String @id @default(uuid())
+    name     String
+    url      String
+    folderId String
+    folder   Folder @relation("folderFiles", fields: [folderId], references: [id])
+}
+
+model CourseBook {
+    id        String       @id @default(uuid())
+    title     String
+    parentID  String?
+    content   Json?
+    courseID  String
+    course    Course       @relation(fields: [courseID], references: [id])
+    parent    CourseBook?  @relation("CourseBookChildren", fields: [parentID], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    children  CourseBook[] @relation("CourseBookChildren")
+    createdAt DateTime     @default(now())
+    updatedAt DateTime     @updatedAt
+}

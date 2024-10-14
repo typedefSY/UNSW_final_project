@@ -1,0 +1,5 @@
+{
+  "CHECKS": {
+    "regexp": "^(chore|docs|feat|fix|refactor|style|test|revert)(\\([a-zA-Z0-9- ,]+\\))?: BW-[0-9]+ [a-z].*"
+  }
+}

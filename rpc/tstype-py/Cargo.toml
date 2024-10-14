@@ -1,0 +1,16 @@
+[package]
+name = "tstype-py"
+version = "0.1.5"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[lib]
+name = "tstype_py"
+crate-type = ["cdylib"]
+
+[dependencies]
+pyo3 = "0.20.0"
+serde = "1.0.197"
+serde_json = "1.0.114"
+# from github https://github.com/xxxbrian/tstype-rs
+tstype-rs = { git = "https://github.com/xxxbrian/tstype-rs", version = "0.1.5" }

@@ -1,0 +1,102 @@
+name: "Test, lint, build and Deploy"
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Check Server Type
+        run: (cd server/ && yarn && yarn tsc)
+      - name: Lint Client
+        run: (cd client/ && yarn && yarn lint)
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build prod
+        run: make build-prod
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push images
+        run: |
+          docker tag brainwaves-nginx:latest ghcr.io/unsw-cse-comp99-3900-24t1/brainwaves-nginx:latest
+          docker tag brainwaves-client:latest ghcr.io/unsw-cse-comp99-3900-24t1/brainwaves-client:latest
+          docker tag brainwaves-backend:latest ghcr.io/unsw-cse-comp99-3900-24t1/brainwaves-backend:latest
+          docker push ghcr.io/unsw-cse-comp99-3900-24t1/brainwaves-nginx:latest
+          docker push ghcr.io/unsw-cse-comp99-3900-24t1/brainwaves-client:latest
+          docker push ghcr.io/unsw-cse-comp99-3900-24t1/brainwaves-backend:latest
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: SSH Remote Commands
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          # This is bad security practice, but we have to do this as we do not
+          # have adequate access to the repository to put it as a CI secret.
+          #
+          # This user has been heavily locked down and cannot do anything.
+          host: 51.161.152.58
+          username: brainwaves
+          port: 22
+          key: |
+            -----BEGIN OPENSSH PRIVATE KEY-----
+            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
+            -----END OPENSSH PRIVATE KEY-----
+          script: |
+            cd /code/capstone-project-3900w18bbrainwavebuilders
+            .dev/deploy.sh
+
+permissions:
+  packages: write
+  contents: read
+  id-token: write

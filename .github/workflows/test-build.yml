@@ -1,0 +1,45 @@
+name: "Test, lint and build"
+on:
+  push:
+    branches-ignore: [main]
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Check Server Type
+        run: (cd server/ && yarn && yarn tsc)
+      - name: Lint Client
+        run: (cd client/ && yarn && yarn lint)
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build prod
+        run: make build-prod
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push images
+        run: |
+          docker tag brainwaves-nginx:latest ghcr.io/unsw-cse-comp99-3900-24t1/brainwaves-nginx:commit-${{ github.sha }}
+          docker tag brainwaves-client:latest ghcr.io/unsw-cse-comp99-3900-24t1/brainwaves-client:commit-${{ github.sha }}
+          docker tag brainwaves-backend:latest ghcr.io/unsw-cse-comp99-3900-24t1/brainwaves-backend:commit-${{ github.sha }}
+          docker push ghcr.io/unsw-cse-comp99-3900-24t1/brainwaves-nginx:commit-${{ github.sha }}
+          docker push ghcr.io/unsw-cse-comp99-3900-24t1/brainwaves-client:commit-${{ github.sha }}
+          docker push ghcr.io/unsw-cse-comp99-3900-24t1/brainwaves-backend:commit-${{ github.sha }}
+
+permissions:
+  packages: write
+  contents: read
+  id-token: write

@@ -1,0 +1,31 @@
+# Runs a production-ready image, like docker-compose.build.yaml, but with local
+# database.
+
+services:
+  nginx:
+    ports:
+      - "${BIND_PORT}:80"
+    build:
+      context: .
+      dockerfile: .dev/build/nginx.Dockerfile
+    depends_on:
+      - client
+      - backend
+
+  backend:
+    extends:
+      file: docker-compose.build.yaml
+      service: backend
+
+  client:
+    extends:
+      file: docker-compose.build.yaml
+      service: client
+
+  db:
+    extends:
+      file: docker-compose.yaml
+      service: db
+
+volumes:
+  db: {}
